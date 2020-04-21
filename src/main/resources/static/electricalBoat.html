@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!--    Global CSS, JS, JQUERY, BOOTSTRAP, DATA TABLES-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+    <!-- Local CSS and JS -->
+    <link rel="stylesheet" type="text/css" href="\css\style.css">
+    <script src="js/electricalBoat.js"></script>
+    <meta charset="UTF-8">
+    <title>MolvenoHotelBoatReservation</title>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #e3f2fd;">
+        <a class="navbar-brand" href="#">Hotel Molveno</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="MolvenoBoat.html">Home <span class="sr-only">(current)</span></a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        trip
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="start.html">start trip</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="end.html">stop trip</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="tripsTable.html">trip list</a>
+                        <div class="dropdown-divider"></div>
+
+
+                    </div>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        boat
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="boat.html">rowing boat</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="electricalBoat.html">electrical boat</a>
+                        <div class="dropdown-divider"></div>
+
+
+
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="overview.html">overviews</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About Us</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+</head>
+<body>
+<br>
+<button id="createBoatButton" type="button">Create rowing Boat</button>
+<br>
+<div class="container">
+
+    <table id="boatTable" class="table table-striped">
+        <thead>
+        <tr>
+
+            <th>boat number</th>
+            <th>boat type</th>
+            <th>number of seat</th>
+            <th>charging time</th>
+            <th>in the jetty </th>
+            <th> available time</th>
+            <th>minimum price</th>
+            <th>usage number</th>
+
+            <th>delete</th>
+            <th>edit</th>
+
+        </tr>
+
+        </thead>
+        <tbody id="boatContainer" class="table table-striped">
+        </tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="boatCreatePop" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">New Boat</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">boat number:</label>
+                        <input type="text" class="form-control" id="boatNumberInput">
+                        <label for="recipient-name" class="col-form-label">number of seat:</label>
+                        <input type="text" class="form-control" id="numberOfSeatInput">
+                        <label for="recipient-name" class="col-form-label">charge time per hour:</label>
+                        <input type="text" class="form-control" id="chargeTimeInput">
+                        <label for="recipient-name" class="col-form-label">minimum price:</label>
+                        <input type="text" class="form-control" id="minimumPriceInput">
+
+
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="savePop">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="boatEditPop" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Boat</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">boat number:</label>
+                        <input type="text" class="form-control" id="boatNumberEdit">
+
+                        <label for="recipient-name" class="col-form-label">number of seat:</label>
+                        <input type="text" class="form-control" id="numberOfSeatEdit">
+                        <label for="recipient-name" class="col-form-label">charge time per hour:</label>
+                        <input type="text" class="form-control" id="chargeTimeEdit">
+                        <label for="recipient-name" class="col-form-label">minimum price:</label>
+                        <input type="text" class="form-control" id="minimumPriceEdit">
+
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="editPop">Edit</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="areYouSure" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel2">Are you sure?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you sure about this?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="confirmDelete">Yes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="noName" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel1">no name</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                please input a number.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">okay</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
